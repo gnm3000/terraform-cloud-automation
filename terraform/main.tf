@@ -100,7 +100,7 @@ resource "aws_launch_template" "lt" {
               systemctl start docker
               docker pull gnm3000/cpu-usage:latest
               docker rm -f cpu-usage || true
-              docker run -d --name cpu-usage --restart always -p 80:5000 gnm3000/cpu-usage:latest
+              docker run -d --name cpu-usage --restart always -p 80:5000 --cpus="$(nproc)" gnm3000/cpu-usage:latest
               EOF
   )
 
